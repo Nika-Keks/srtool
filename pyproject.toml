@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "srtool"
+version = "0.1.0"
+description = ""
+authors = ["anikin"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+torch = {version = "~2.1.0", source = "pytorch"}
+torchaudio = {version = "^2.1.0+cu118", source = "pytorch"}
+sox = "^1.4.1"
+soundfile = "^0.12.1"
+matplotlib = "^3.7.0"
+pytorch-metric-learning = "^2.3.0"
+hydra-core = "~1.2"
+openai-whisper = "^20231117"
+
+
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.25.2"
+
+
+[[tool.poetry.source]]
+name = "pytorch"
+url = "https://download.pytorch.org/whl/cu118"
+priority = "supplemental"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

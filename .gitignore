@@ -1,0 +1,7 @@
+.vscode/
+.venv/
+.vgenv/
+/data/
+sandbox/
+outputs/
+__pycache__

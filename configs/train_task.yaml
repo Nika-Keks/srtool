@@ -1,0 +1,49 @@
+# @package _global_
+
+defaults:
+  - training_args/optimiser: adamw
+  - training_args/scheduler: one_cycle
+
+training_args:
+  devices: 3
+  max_epoch: 60
+  max_iterations: 1_000_000
+  grad_acumulation: 8
+  ckpt_path: ${hydra:run.dir}/ckpt
+  
+  dataloader_args:
+    
+    train:
+      num_workers: 4
+      prefetch_factor: 4
+      pin_memory: True
+      batch_size: 32
+    
+    eval:
+      batch_size: 4
+
+  tensorboard_logging:
+    log_dir: ${hydra:run.dir}/tb-log
+
+
+train_dataset:
+  utt2spk: data/voxceleb2/utt2spk
+  crop_size: 4
+  sample_rate: 16_000
+
+eval_dataset:
+  utt2spk: data/voxceleb1-test/utt2spk
+  crop_size: 8
+  sample_rate: 16_000
+
+criterion:
+  margin: 0.35
+  scale: 32
+
+model:
+  frame_out_dim: 1024
+  name_or_path: zoo/whisper-tiny-encoder.pt
+
+compute_metrics:
+  # _target_: srtool.metrics.EERMetric
+  data_path: data/voxceleb1-test/

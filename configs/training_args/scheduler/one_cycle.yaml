@@ -1,0 +1,7 @@
+name: one_cycle
+args: 
+  pct_start: 0.05
+  cycle_momentum: False
+  max_lr: ${training_args.optimiser.args.lr}
+  div_factor: 10
+  final_div_factor: 10000
